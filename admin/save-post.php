@@ -8,7 +8,8 @@
         $file_size = $_FILES['fileToUpload']['size'];
         $file_tmp = $_FILES['fileToUpload']['tmp_name'];
         $file_type = $_FILES['fileToUpload']['type'];
-        $file_ext = end(explode('.', $file_name));
+        $ext = explode('.', $file_name);
+        $file_ext = end($ext);
         $extensions = array("jpeg", "png", "jpg");
 
         if(in_array($file_ext,$extensions) === false ) {
@@ -34,7 +35,7 @@
     $author = $_SESSION['user_id'];
    
     $sql = "INSERT INTO post(title,description,category,post_date,author,post_img)
-        VALUES('{$title}', '{$description}', {$category}, '{$date}', {$author}, '{$file_name}');";
+        VALUES('{$title}', '{$description}', {$category}, '{$date}', '{$author}', '{$file_name}');";
     $sql .= "UPDATE category SET post = post + 1 WHERE category_id = {$category}"; 
 
     if(mysqli_multi_query($conn, $sql)){

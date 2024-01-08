@@ -39,7 +39,7 @@
                 <textarea name="postdesc" class="form-control"  required rows="5">
                 <?php echo $row['description'];?>
                 </textarea>
-            </div>
+            </div> 
             <div class="form-group">
                 <label for="exampleInputCategory">Category</label>
                 <select class="form-control" name="category">

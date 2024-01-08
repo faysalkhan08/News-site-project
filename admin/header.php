@@ -1,9 +1,13 @@
-<?php
+<?php 
+include "config.php";
+
 session_start();
+
 if(!isset($_SESSION["username"])){
-    header("Location: index.php");
+
+    header("location: {$hostname}/admin/");
+
 }
-session_write_close();
 
 ?>
 
@@ -13,7 +17,7 @@ session_write_close();
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <!-- The above 3 meta tags must come first in the head; any other head content must come after these tags -->
         <title>ADMIN Panel</title>
         <!-- Bootstrap -->
         <link rel="stylesheet" href="../css/bootstrap.min.css" />
@@ -36,7 +40,7 @@ session_write_close();
                     <!-- /LOGO -->
                       <!-- LOGO-Out -->
                     <div class="col-md-offset-9  col-md-3">
-                        <a href="logout.php" class="admin-logout">Hello <?php echo $_SESSION["username"];  ?>, logout</a>
+                        <a href="logout.php" class="admin-logout" >Hello<span style="color:pink;"> <?php echo $_SESSION["username"] ?>,</span> logout</a>
                     </div>
                     <!-- /LOGO-Out -->
                 </div>
@@ -52,10 +56,10 @@ session_write_close();
                             <li>
                                 <a href="post.php">Post</a>
                             </li>
-                            <?php
-                                if($_SESSION["user_role"] == '1'){
-
-                                
+                            <?php 
+                            
+                            if($_SESSION["user_role"] == '1'){
+ 
                             ?>
                             <li>
                                 <a href="category.php">Category</a>
@@ -63,9 +67,10 @@ session_write_close();
                             <li>
                                 <a href="users.php">Users</a>
                             </li>
-                            <?php
-                            }
-                            ?>
+                            <li>
+                                <a href="settings.php">Settings</a>
+                            </li>
+                                <?php } ?>
                         </ul>
                     </div>
                 </div>

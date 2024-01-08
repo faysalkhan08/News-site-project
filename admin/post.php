@@ -35,15 +35,13 @@ include "header.php";
 
                     if ($_SESSION['user_role'] == '1') {
 
-                        $sql = "SELECT post.post_id, post.title, post.description, post.post_date,
-                         category.category_name, user.username, post.category FROM post
+                        $sql = "SELECT * FROM post
                           LEFT JOIN category ON post.category = category.category_id
                           LEFT JOIN user ON post.author = user.user_id
                           ORDER BY post.post_id DESC LIMIT {$offset},{$limit};";
                     } elseif ($_SESSION["user_role"] == '0') {
 
-                        $sql = "SELECT post.post_id, post.title, post.description, post.post_date,
-                         category.category_name, user.username, post.category FROM post
+                        $sql = "SELECT * FROM post
                           LEFT JOIN category ON post.category = category.category_id
                           LEFT JOIN user ON post.author = user.user_id
                           WHERE post.author = {$_SESSION['user_id']}
@@ -83,7 +81,7 @@ include "header.php";
                 }
                 echo '<ul class="pagination admin-pagination">';
                 if ($page > 1) {
-                    echo '<li><a href="users.php?page=' . ($page - 1) . '">prev</a></li>';
+                    echo '<li><a href="post.php?page=' . ($page - 1) . '">prev</a></li>';
                 }
                 for ($i = 1; $i <= $total_page; $i++) {
                     if ($i == $page) {
@@ -91,10 +89,10 @@ include "header.php";
                     } else {
                         $active = "";
                     }
-                    echo '<li class"' . $active . '"><a href="users.php?page=' . $i . '">' . $i . '</a></li>';
+                    echo '<li class"' . $active . '"><a href="post.php?page=' . $i . '">' . $i . '</a></li>';
                 }
                 if ($total_page > $page) {
-                    echo '<li><a href="users.php?page=' . ($page + 1) . '">Next</a></li>';
+                    echo '<li><a href="post.php?page=' . ($page + 1) . '">Next</a></li>';
                 }
                 echo '</ul>';
 
